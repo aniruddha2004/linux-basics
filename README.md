@@ -11,8 +11,9 @@
 | Basic Commands | [`basics/basic-commands.md`](./basics/basic-commands.md) |
 | Standard Streams (STDIN/STDOUT/STDERR) | [`basics/standard-streams.md`](./basics/standard-streams.md) |
 | APT Package Management | [`system-admin/apt-package-management.md`](./system-admin/apt-package-management.md) |
-| File Permissions | [`system-admin/file-permissions.md`](./system-admin/file-permissions.md) |
 | User Account Management | [`system-admin/user-management.md`](./system-admin/user-management.md) |
+| Filesystem Overview | [`filesystem/filesystem-overview.md`](./filesystem/filesystem-overview.md) |
+| File Permissions | [`filesystem/file-permissions.md`](./filesystem/file-permissions.md) |
 | Process Management | [`process-management/process-theory.md`](./process-management/process-theory.md) |
 | Process Commands | [`process-management/process-commands.md`](./process-management/process-commands.md) |
 | `top` / `htop` | [`process-management/htop-top.md`](./process-management/htop-top.md) |
@@ -29,8 +30,10 @@ Linux/
 │   └── standard-streams.md
 ├── system-admin/               # Administration and configuration
 │   ├── apt-package-management.md
-│   ├── file-permissions.md
 │   └── user-management.md
+├── filesystem/                 # Filesystem hierarchy and permissions
+│   ├── filesystem-overview.md
+│   └── file-permissions.md
 ├── process-management/         # Processes, threads, and monitoring
 │   ├── process-theory.md
 │   ├── process-commands.md
@@ -82,21 +85,6 @@ Package management on Debian-based systems using APT.
 
 ---
 
-### [system-admin/file-permissions.md](./system-admin/file-permissions.md)
-
-Understanding permission bits, ownership, and access control.
-
-**Covers:**
-- Permission string breakdown: `rwxrwxrwx`
-- File types: `-`, `d`, `l`, `c`, `b`, `s`, `p`
-- `rwx` differences between files and directories
-- Numeric and symbolic `chmod`
-- `chown` and `chgrp`
-- Special bits: SUID, SGID, Sticky bit
-- Default permissions and `umask`
-
----
-
 ### [system-admin/user-management.md](./system-admin/user-management.md)
 
 Basics of managing user accounts on Linux.
@@ -110,6 +98,34 @@ Basics of managing user accounts on Linux.
 - Deleting users: `userdel`
 - `/etc/skel` and default home files
 - Password locking/unlocking
+
+---
+
+### [filesystem/filesystem-overview.md](./filesystem/filesystem-overview.md)
+
+Overview of the Linux directory hierarchy.
+
+**Covers:**
+- All standard directories: `/bin`, `/boot`, `/dev`, `/etc`, `/home`, `/lib`, `/lib64`, `/media`, `/mnt`, `/opt`, `/proc`, `/root`, `/sbin`, `/tmp`, `/usr`, `/var`
+- What each directory is meant for
+- Dotfiles in home directories (`.bashrc`, `.profile`, `.bash_logout`)
+- Where they come from (`/etc/skel/`)
+- Key distinctions between similar directories
+
+---
+
+### [filesystem/file-permissions.md](./filesystem/file-permissions.md)
+
+Understanding permission bits, ownership, and access control.
+
+**Covers:**
+- Permission string breakdown: `rwxrwxrwx`
+- File types: `-`, `d`, `l`, `c`, `b`, `s`, `p`
+- `rwx` differences between files and directories
+- Numeric and symbolic `chmod`
+- `chown` and `chgrp`
+- Special bits: SUID, SGID, Sticky bit
+- Default permissions and `umask`
 
 ---
 
@@ -178,8 +194,9 @@ The `/proc` pseudo-filesystem — kernel data exposed as files.
 | Look up a command or its flags | [`basics/basic-commands.md`](./basics/basic-commands.md) |
 | Understand redirection or pipes | [`basics/standard-streams.md`](./basics/standard-streams.md) |
 | Install/remove/update packages | [`system-admin/apt-package-management.md`](./system-admin/apt-package-management.md) |
-| Fix or set file permissions | [`system-admin/file-permissions.md`](./system-admin/file-permissions.md) |
 | Manage users or understand /etc/passwd | [`system-admin/user-management.md`](./system-admin/user-management.md) |
+| Understand Linux directory structure | [`filesystem/filesystem-overview.md`](./filesystem/filesystem-overview.md) |
+| Fix or set file permissions | [`filesystem/file-permissions.md`](./filesystem/file-permissions.md) |
 | Understand processes, threads, and PIDs | [`process-management/process-theory.md`](./process-management/process-theory.md) |
 | Control processes (kill, renice, etc.) | [`process-management/process-commands.md`](./process-management/process-commands.md) |
 | Monitor processes interactively | [`process-management/htop-top.md`](./process-management/htop-top.md) |
