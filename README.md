@@ -1,4 +1,4 @@
-# Linux Course Notes
+# Linux Notes
 
 > Personal notes taken while learning Linux fundamentals. Organized, rephrased, and maintained for easy reference.
 
@@ -6,12 +6,13 @@
 
 ## Table of Contents
 
-| Topic | File | Status |
-|-------|------|--------|
-| Basic Commands | [`basic-commands.md`](./basic-commands.md) | Complete |
-| Standard Streams (STDIN/STDOUT/STDERR) | [`standard-streams.md`](./standard-streams.md) | Complete |
-| APT Package Management | [`apt-package-management.md`](./apt-package-management.md) | Complete |
-| File Permissions | [`file-permissions.md`](./file-permissions.md) | Complete |
+| Topic | File |
+|-------|------|
+| Basic Commands | [`basic-commands.md`](./basic-commands.md) |
+| Standard Streams (STDIN/STDOUT/STDERR) | [`standard-streams.md`](./standard-streams.md) |
+| APT Package Management | [`apt-package-management.md`](./apt-package-management.md) |
+| File Permissions | [`file-permissions.md`](./file-permissions.md) |
+| User Account Management | [`user-management.md`](./user-management.md) |
 
 ---
 
@@ -65,6 +66,22 @@ Understanding permission bits, ownership, and access control.
 
 ---
 
+### [user-management.md](./user-management.md)
+
+Basics of managing user accounts on Linux.
+
+**Covers:**
+- Core user files: `/etc/passwd`, `/etc/shadow`, `/etc/group`
+- Field-by-field breakdown of each file
+- Creating users: `useradd` vs `adduser`
+- Setting passwords: `passwd`
+- Modifying users: `usermod`
+- Deleting users: `userdel`
+- `/etc/skel` and default home files
+- Password locking/unlocking
+
+---
+
 ## Quick Reference
 
 | Need to... | Check this file |
@@ -73,31 +90,7 @@ Understanding permission bits, ownership, and access control.
 | Understand redirection or pipes | [`standard-streams.md`](./standard-streams.md) |
 | Install/remove/update packages | [`apt-package-management.md`](./apt-package-management.md) |
 | Fix or set file permissions | [`file-permissions.md`](./file-permissions.md) |
-
----
-
-## How These Notes Are Maintained
-
-As new topics are learned, they are:
-1. Rephrased in proper English
-2. Organized with clear headings and tables
-3. Stored in dedicated `.md` files
-4. Added to this README index
-
----
-
-## Topics Pending / To-Do
-
-- [ ] Process Management (`ps`, `top`, `kill`, `htop`)
-- [ ] User Management (`useradd`, `usermod`, `passwd`, `sudo`)
-- [ ] Networking Basics (`ping`, `netstat`, `ss`, `curl`, `wget`)
-- [ ] Disk Management (`df`, `du`, `fdisk`, `mount`)
-- [ ] Text Processing (`sed`, `awk`, `tr`, `rev`)
-- [ ] Shell Scripting Basics
-- [ ] Systemd and Services (`systemctl`, `service`)
-- [ ] Compression and Archiving (`tar`, `gzip`, `zip`)
-- [ ] Environment Variables and `PATH`
-- [ ] Cron Jobs and Scheduling
+| Manage users or understand /etc/passwd | [`user-management.md`](./user-management.md) |
 
 ---
 
