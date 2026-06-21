@@ -8,17 +8,42 @@
 
 | Topic | File |
 |-------|------|
-| Basic Commands | [`basic-commands.md`](./basic-commands.md) |
-| Standard Streams (STDIN/STDOUT/STDERR) | [`standard-streams.md`](./standard-streams.md) |
-| APT Package Management | [`apt-package-management.md`](./apt-package-management.md) |
-| File Permissions | [`file-permissions.md`](./file-permissions.md) |
-| User Account Management | [`user-management.md`](./user-management.md) |
+| Basic Commands | [`basics/basic-commands.md`](./basics/basic-commands.md) |
+| Standard Streams (STDIN/STDOUT/STDERR) | [`basics/standard-streams.md`](./basics/standard-streams.md) |
+| APT Package Management | [`system-admin/apt-package-management.md`](./system-admin/apt-package-management.md) |
+| File Permissions | [`system-admin/file-permissions.md`](./system-admin/file-permissions.md) |
+| User Account Management | [`system-admin/user-management.md`](./system-admin/user-management.md) |
+| Process Management | [`process-management/process-theory.md`](./process-management/process-theory.md) |
+| Process Commands | [`process-management/process-commands.md`](./process-management/process-commands.md) |
+| `top` / `htop` | [`process-management/htop-top.md`](./process-management/htop-top.md) |
+| `/proc` Filesystem | [`process-management/proc-filesystem.md`](./process-management/proc-filesystem.md) |
+
+---
+
+## Directory Structure
+
+```
+Linux/
+├── basics/                     # Everyday commands and concepts
+│   ├── basic-commands.md
+│   └── standard-streams.md
+├── system-admin/               # Administration and configuration
+│   ├── apt-package-management.md
+│   ├── file-permissions.md
+│   └── user-management.md
+├── process-management/         # Processes, threads, and monitoring
+│   ├── process-theory.md
+│   ├── process-commands.md
+│   ├── htop-top.md
+│   └── proc-filesystem.md
+└── README.md
+```
 
 ---
 
 ## File Overview
 
-### [basic-commands.md](./basic-commands.md)
+### [basics/basic-commands.md](./basics/basic-commands.md)
 
 Essential Linux commands for everyday navigation and file management.
 
@@ -29,7 +54,9 @@ Essential Linux commands for everyday navigation and file management.
 - System Information: `whoami`, `who`, `uname`, `hostname`, `clear`, `date`, `uptime`
 - Help & Manuals: `man`, `info`, `whatis`, `which`, `type`, `alias`
 
-### [standard-streams.md](./standard-streams.md)
+---
+
+### [basics/standard-streams.md](./basics/standard-streams.md)
 
 Understanding how Linux handles input/output streams and redirection.
 
@@ -40,7 +67,9 @@ Understanding how Linux handles input/output streams and redirection.
 - Logical AND `&&` and exit status vs stderr
 - File descriptors cheat sheet
 
-### [apt-package-management.md](./apt-package-management.md)
+---
+
+### [system-admin/apt-package-management.md](./system-admin/apt-package-management.md)
 
 Package management on Debian-based systems using APT.
 
@@ -51,7 +80,9 @@ Package management on Debian-based systems using APT.
 - Adding repositories and GPG keys (legacy and modern methods)
 - Complete example: Adding Docker repository
 
-### [file-permissions.md](./file-permissions.md)
+---
+
+### [system-admin/file-permissions.md](./system-admin/file-permissions.md)
 
 Understanding permission bits, ownership, and access control.
 
@@ -66,7 +97,7 @@ Understanding permission bits, ownership, and access control.
 
 ---
 
-### [user-management.md](./user-management.md)
+### [system-admin/user-management.md](./system-admin/user-management.md)
 
 Basics of managing user accounts on Linux.
 
@@ -82,15 +113,77 @@ Basics of managing user accounts on Linux.
 
 ---
 
+### [process-management/process-theory.md](./process-management/process-theory.md)
+
+Core concepts behind process management in Linux.
+
+**Covers:**
+- What is a process and its components
+- Process lifecycle and states (Running, Ready, Blocked, Zombie)
+- Threads vs processes — differences and trade-offs
+- LWPs (Lightweight Processes) and how Linux implements threads
+- PIDs, TIDs, and Thread Group IDs
+- How `ps -efL` shows processes and threads
+- Interpreting your `opencode` example with 28 threads
+- Signals: SIGTERM vs SIGKILL, SIGSTOP/SIGCONT, SIGINT
+
+---
+
+### [process-management/process-commands.md](./process-management/process-commands.md)
+
+Commands for inspecting and controlling processes.
+
+**Covers:**
+- `ps` flags: `a`, `u`, `x`, `e`, `f`, `L` and their combinations
+- `kill` and `pkill` — differences and use cases
+- `pgrep` — finding PIDs by name
+- `nice` and `renice` — adjusting process priority
+- Signal numbers and when to use each
+
+---
+
+### [process-management/htop-top.md](./process-management/htop-top.md)
+
+Interactive process viewers and resource monitoring.
+
+**Covers:**
+- `top` key bindings and columns
+- `htop` interactive controls and visual features
+- Column meanings: PID, USER, PRI, NI, VIRT, RES, SHR, S, CPU%, MEM%, TIME+
+- PRI vs NI — the difference between kernel priority and user-controllable nice value
+- VIRT vs RES vs SHR — what each memory metric actually means
+- MEM% calculation and why it matters
+- `top` vs `htop` comparison
+
+---
+
+### [process-management/proc-filesystem.md](./process-management/proc-filesystem.md)
+
+The `/proc` pseudo-filesystem — kernel data exposed as files.
+
+**Covers:**
+- What `/proc` is and how it works (virtual filesystem)
+- Top-level files: `cpuinfo`, `meminfo`, `loadavg`, `version`, `uptime`
+- Per-process directories (`/proc/<PID>/`)
+- Key files: `cmdline`, `status`, `statm`, `environ`, `fd/`, `cwd`, `exe`
+- Reading process memory and state information
+- Real example: Inspecting PID 1 (systemd)
+
+---
+
 ## Quick Reference
 
 | Need to... | Check this file |
 |------------|----------------|
-| Look up a command or its flags | [`basic-commands.md`](./basic-commands.md) |
-| Understand redirection or pipes | [`standard-streams.md`](./standard-streams.md) |
-| Install/remove/update packages | [`apt-package-management.md`](./apt-package-management.md) |
-| Fix or set file permissions | [`file-permissions.md`](./file-permissions.md) |
-| Manage users or understand /etc/passwd | [`user-management.md`](./user-management.md) |
+| Look up a command or its flags | [`basics/basic-commands.md`](./basics/basic-commands.md) |
+| Understand redirection or pipes | [`basics/standard-streams.md`](./basics/standard-streams.md) |
+| Install/remove/update packages | [`system-admin/apt-package-management.md`](./system-admin/apt-package-management.md) |
+| Fix or set file permissions | [`system-admin/file-permissions.md`](./system-admin/file-permissions.md) |
+| Manage users or understand /etc/passwd | [`system-admin/user-management.md`](./system-admin/user-management.md) |
+| Understand processes, threads, and PIDs | [`process-management/process-theory.md`](./process-management/process-theory.md) |
+| Control processes (kill, renice, etc.) | [`process-management/process-commands.md`](./process-management/process-commands.md) |
+| Monitor processes interactively | [`process-management/htop-top.md`](./process-management/htop-top.md) |
+| Inspect `/proc` for process/kernel info | [`process-management/proc-filesystem.md`](./process-management/proc-filesystem.md) |
 
 ---
 
