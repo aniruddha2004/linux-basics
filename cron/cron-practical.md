@@ -7,12 +7,11 @@
 ## Overview
 
 This walkthrough covers the full lifecycle of a cron job:
-1. Create scripts
-2. Make them executable
+1. Create scripts with proper naming
+2. Add shebang and make executable
 3. Test them with `run-parts`
-4. Debug common issues
-5. Schedule via `crontab -e`
-6. Verify output
+4. Schedule via `crontab -e`
+5. Verify output
 
 ---
 
@@ -23,10 +22,10 @@ mkdir ~/test-scripts
 cd ~/test-scripts
 ```
 
-Create two simple scripts:
+Create two scripts:
 
 ```bash
-vi script1.sh
+vi script1
 ```
 
 ```bash
@@ -35,7 +34,7 @@ echo -n "Hi there!"
 ```
 
 ```bash
-vi script2.sh
+vi script2
 ```
 
 ```bash
@@ -43,55 +42,26 @@ vi script2.sh
 echo -n "Welcome to the world of crons!!!"
 ```
 
+> **Note**: We name them `script1` and `script2` (no `.sh` extension) because `run-parts` ignores any file containing a dot in its name. Files like `script1.sh` or `backup.old` are silently skipped.
+
+> **Note**: The `#!/bin/bash` line (shebang) at the top is mandatory. It tells the kernel which interpreter to use when executing the file.
+
 ---
 
 ## Step 2: Make Them Executable
 
 ```bash
-chmod +x script1.sh
-chmod +x script2.sh
+chmod +x script1
+chmod +x script2
 ```
 
-> Without execute permission, `run-parts` and cron cannot run these files.
+> `run-parts` only runs files that have execute permission. Without `chmod +x`, the file will be silently ignored.
 
 ---
 
-## Step 3: Test Run-Parts
+## Step 3: Test with `run-parts`
 
-### First Attempt — Nothing Happens
-
-```bash
-run-parts --report ~/test-scripts/
-```
-
-**Output:** (blank — nothing runs)
-
-**Why?** `run-parts` ignores files with extensions like `.sh` by default. It only runs files without dots in their names.
-
----
-
-### Verify with `--list` and `--test`
-
-```bash
-run-parts --list ~/test-scripts
-# Output: (empty)
-
-run-parts --test ~/test-scripts/
-# Output: (empty)
-```
-
-Both confirm no eligible scripts were found.
-
----
-
-### Fix: Remove File Extensions
-
-```bash
-mv ~/test-scripts/script1.sh ~/test-scripts/script1
-mv ~/test-scripts/script2.sh ~/test-scripts/script2
-```
-
-Now test again:
+### Check Which Scripts Are Eligible
 
 ```bash
 run-parts --list ~/test-scripts
@@ -102,57 +72,22 @@ test-scripts/script1
 test-scripts/script2
 ```
 
-> **Key Rule**: `run-parts` ignores filenames containing dots (`.sh`, `.bak`, `.old`, etc.). Use plain names.
+> `--list` shows which files `run-parts` considers eligible. A file must: (1) have no dots in its name, (2) have execute permission, (3) not be a backup file.
 
----
-
-### Second Attempt — Exec Format Error
+### Dry Run (Preview Without Executing)
 
 ```bash
-run-parts --report ~/test-scripts/
+run-parts --test ~/test-scripts/
 ```
 
 ```text
-test-scripts//script1:
-run-parts: failed to exec test-scripts//script1: Exec format error
-run-parts: test-scripts//script1 exited with return code 1
-
-test-scripts//script2:
-run-parts: failed to exec test-scripts//script2: Exec format error
-run-parts: test-scripts//script2 exited with return code 1
+test-scripts/script1
+test-scripts/script2
 ```
 
-**Why?** The scripts are missing a **shebang line** (`#!/bin/bash`). The kernel doesn't know which interpreter to use.
+> `--test` shows what would execute without actually running anything.
 
----
-
-### Fix: Add Shebang Lines
-
-Edit each script and add `#!/bin/bash` as the first line:
-
-```bash
-vi ~/test-scripts/script1
-```
-
-```bash
-#!/bin/bash
-echo -n "Hi there!"
-```
-
-```bash
-vi ~/test-scripts/script2
-```
-
-```bash
-#!/bin/bash
-echo -n "Welcome to the world of crons!!!"
-```
-
-> The shebang (`#!`) tells the system which program should interpret the file.
-
----
-
-### Third Attempt — Success
+### Execute and See Output
 
 ```bash
 run-parts --report ~/test-scripts/
@@ -164,7 +99,7 @@ Hi there!test-scripts//script2:
 Welcome to the world of crons!!!
 ```
 
-Both scripts ran successfully. The `--report` flag prefixed each output with the script name.
+> `--report` prefixes each script's output with its path so you know which script produced what.
 
 ---
 
@@ -193,8 +128,6 @@ Save and exit. You will see:
 ```text
 crontab: installing new crontab
 ```
-
----
 
 ### Verify the Crontab
 
@@ -251,15 +184,16 @@ sudo cat /var/spool/cron/crontabs/aniruddha_ghosh
 
 ---
 
-## Common Issues and Solutions
+## Requirements for `run-parts`
 
-| Problem | Cause | Fix |
-|---------|-------|-----|
-| `run-parts` finds nothing | Files have extensions (`.sh`) | Rename without extension |
-| `Exec format error` | Missing shebang (`#!/bin/bash`) | Add shebang as first line |
-| Script won't run | No execute permission | `chmod +x scriptname` |
-| Cron job silent | No output redirection | Add `>> /path/to/log.txt 2>&1` |
-| Cron not working | Service not running | `sudo systemctl status cron` |
+For a script to be executed by `run-parts`, all of these must be true:
+
+| Requirement | Why | How to Check |
+|-------------|-----|--------------|
+| **No dots in filename** | `run-parts` ignores files with dots | `script1` works, `script1.sh` is ignored |
+| **Execute permission** | The file must be runnable | `chmod +x script1` |
+| **Valid shebang** | The kernel needs to know the interpreter | `#!/bin/bash` as first line |
+| **Not a backup file** | Files ending in `~` or `.bak` are ignored | Avoid `script1~` or `script1.bak` |
 
 ---
 
