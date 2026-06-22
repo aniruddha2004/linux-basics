@@ -18,6 +18,9 @@
 | Process Commands | [`process-management/process-commands.md`](./process-management/process-commands.md) |
 | `top` / `htop` | [`process-management/htop-top.md`](./process-management/htop-top.md) |
 | `/proc` Filesystem | [`process-management/proc-filesystem.md`](./process-management/proc-filesystem.md) |
+| Cron Syntax | [`cron/cron-syntax.md`](./cron/cron-syntax.md) |
+| Cron Locations | [`cron/cron-locations.md`](./cron/cron-locations.md) |
+| Cron Practical Walkthrough | [`cron/cron-practical.md`](./cron/cron-practical.md) |
 
 ---
 
@@ -39,6 +42,10 @@ Linux/
 │   ├── process-commands.md
 │   ├── htop-top.md
 │   └── proc-filesystem.md
+├── cron/                       # Scheduled tasks
+│   ├── cron-syntax.md
+│   ├── cron-locations.md
+│   └── cron-practical.md
 └── README.md
 ```
 
@@ -185,6 +192,49 @@ The `/proc` pseudo-filesystem — kernel data exposed as files.
 - Reading process memory and state information
 - Real example: Inspecting PID 1 (systemd)
 
+### [cron/cron-syntax.md](./cron/cron-syntax.md)
+
+How to read and write cron schedules.
+
+**Covers:**
+- The 5-field format (minute, hour, day, month, weekday)
+- Wildcards `*` and what they mean
+- Intervals with `*/n` (every N minutes/hours)
+- Multiple values with commas and ranges with hyphens
+- Complex expressions broken down
+- The Day-of-Month + Day-of-Week OR gotcha
+- Cron mental model: a 5-column time filter
+
+---
+
+### [cron/cron-locations.md](./cron/cron-locations.md)
+
+Where cron jobs live and how the system organizes them.
+
+**Covers:**
+- `/etc/crontab` — the system master schedule
+- `/etc/cron.d/` — package-specific schedules
+- `/var/spool/cron/crontabs/` — user-specific schedules
+- Preset directories: `hourly`, `daily`, `weekly`, `monthly`
+- `run-parts` — executing all scripts in a directory
+- System vs user crontabs (6-field vs 5-field format)
+- `crontab -e`, `-l`, `-r` commands
+
+---
+
+### [cron/cron-practical.md](./cron/cron-practical.md)
+
+Step-by-step guide to creating, testing, and scheduling cron jobs.
+
+**Covers:**
+- Creating scripts and making them executable
+- Testing with `run-parts` — common pitfalls (extensions, shebang, permissions)
+- Using `--list`, `--test`, and `--report` flags
+- Scheduling via `crontab -e`
+- Redirecting output to log files
+- Inspecting stored crontabs in `/var/spool/cron/crontabs/`
+- Troubleshooting table and best practices
+
 ---
 
 ## Quick Reference
@@ -201,6 +251,9 @@ The `/proc` pseudo-filesystem — kernel data exposed as files.
 | Control processes (kill, renice, etc.) | [`process-management/process-commands.md`](./process-management/process-commands.md) |
 | Monitor processes interactively | [`process-management/htop-top.md`](./process-management/htop-top.md) |
 | Inspect `/proc` for process/kernel info | [`process-management/proc-filesystem.md`](./process-management/proc-filesystem.md) |
+| Write or understand cron expressions | [`cron/cron-syntax.md`](./cron/cron-syntax.md) |
+| Find where cron jobs are stored | [`cron/cron-locations.md`](./cron/cron-locations.md) |
+| Create and test cron jobs hands-on | [`cron/cron-practical.md`](./cron/cron-practical.md) |
 
 ---
 
