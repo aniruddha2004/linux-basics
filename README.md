@@ -23,6 +23,7 @@
 | Cron Practical Walkthrough | [`cron/cron-practical.md`](./cron/cron-practical.md) |
 | Tmux Basics | [`tmux/tmux-basics.md`](./tmux/tmux-basics.md) |
 | Archiving & Compression | [`compression/archiving-compression.md`](./compression/archiving-compression.md) |
+| Terminal Session Recording | [`utilities/script-command.md`](./utilities/script-command.md) |
 
 ---
 
@@ -52,6 +53,8 @@ Linux/
 │   └── tmux-basics.md
 ├── compression/                # Archiving and compression
 │   └── archiving-compression.md
+├── utilities/                  # Misc helpful tools
+│   └── script-command.md
 └── README.md
 ```
 
@@ -270,6 +273,19 @@ Quick notes on bundling files and reducing size.
 
 ---
 
+### [utilities/script-command.md](./utilities/script-command.md)
+
+Record and replay terminal sessions with `script` and `scriptreplay`.
+
+**Covers:**
+- What `script` is used for
+- Recording with `script output.log`
+- Recording with timing information for replay
+- Replaying with `scriptreplay -s output.log -t time.log`
+- Viewing recorded logs
+
+---
+
 ## Quick Reference
 
 | Need to... | Check this file |
@@ -289,6 +305,7 @@ Quick notes on bundling files and reducing size.
 | Create and test cron jobs hands-on | [`cron/cron-practical.md`](./cron/cron-practical.md) |
 | Use tmux basics | [`tmux/tmux-basics.md`](./tmux/tmux-basics.md) |
 | Archive or compress files | [`compression/archiving-compression.md`](./compression/archiving-compression.md) |
+| Record terminal sessions | [`utilities/script-command.md`](./utilities/script-command.md) |
 
 ---
 
