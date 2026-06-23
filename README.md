@@ -10,6 +10,7 @@
 |-------|------|
 | Basic Commands | [`basics/basic-commands.md`](./basics/basic-commands.md) |
 | Standard Streams (STDIN/STDOUT/STDERR) | [`basics/standard-streams.md`](./basics/standard-streams.md) |
+| File Descriptors & "Everything is a File" | [`basics/file-descriptors.md`](./basics/file-descriptors.md) |
 | APT Package Management | [`system-admin/apt-package-management.md`](./system-admin/apt-package-management.md) |
 | User Account Management | [`system-admin/user-management.md`](./system-admin/user-management.md) |
 | Filesystem Overview | [`filesystem/filesystem-overview.md`](./filesystem/filesystem-overview.md) |
@@ -34,7 +35,8 @@
 Linux/
 ├── basics/                     # Everyday commands and concepts
 │   ├── basic-commands.md
-│   └── standard-streams.md
+│   ├── standard-streams.md
+│   └── file-descriptors.md
 ├── system-admin/               # Administration and configuration
 │   ├── apt-package-management.md
 │   └── user-management.md
@@ -87,6 +89,22 @@ Understanding how Linux handles input/output streams and redirection.
 - The pipe operator `|` and how it works with streams
 - Logical AND `&&` and exit status vs stderr
 - File descriptors cheat sheet
+
+---
+
+### [basics/file-descriptors.md](./basics/file-descriptors.md)
+
+Foundational concepts behind file descriptors and the "everything is a file" philosophy.
+
+**Covers:**
+- What a file descriptor is
+- Why file descriptors exist
+- Standard FDs: 0 (stdin), 1 (stdout), 2 (stderr)
+- How redirection and pipes work through FDs
+- File descriptor tables
+- Directories as files
+- Current working directory (`cwd`)
+- Special FD entries seen in `lsof`
 
 ---
 
@@ -307,6 +325,7 @@ List open files and network connections with `lsof`.
 |------------|----------------|
 | Look up a command or its flags | [`basics/basic-commands.md`](./basics/basic-commands.md) |
 | Understand redirection or pipes | [`basics/standard-streams.md`](./basics/standard-streams.md) |
+| Understand file descriptors and "everything is a file" | [`basics/file-descriptors.md`](./basics/file-descriptors.md) |
 | Install/remove/update packages | [`system-admin/apt-package-management.md`](./system-admin/apt-package-management.md) |
 | Manage users or understand /etc/passwd | [`system-admin/user-management.md`](./system-admin/user-management.md) |
 | Understand Linux directory structure | [`filesystem/filesystem-overview.md`](./filesystem/filesystem-overview.md) |
