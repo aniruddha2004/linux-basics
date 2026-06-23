@@ -24,6 +24,7 @@
 | Tmux Basics | [`tmux/tmux-basics.md`](./tmux/tmux-basics.md) |
 | Archiving & Compression | [`compression/archiving-compression.md`](./compression/archiving-compression.md) |
 | Terminal Session Recording | [`utilities/script-command.md`](./utilities/script-command.md) |
+| List Open Files (`lsof`) | [`utilities/lsof.md`](./utilities/lsof.md) |
 
 ---
 
@@ -54,7 +55,8 @@ Linux/
 ├── compression/                # Archiving and compression
 │   └── archiving-compression.md
 ├── utilities/                  # Misc helpful tools
-│   └── script-command.md
+│   ├── script-command.md
+│   └── lsof.md
 └── README.md
 ```
 
@@ -286,6 +288,19 @@ Record and replay terminal sessions with `script` and `scriptreplay`.
 
 ---
 
+### [utilities/lsof.md](./utilities/lsof.md)
+
+List open files and network connections with `lsof`.
+
+**Covers:**
+- What `lsof` is and when to use it
+- Common commands: `lsof -p`, `lsof <file>`, `lsof -u`
+- Network queries: `lsof -i :port`, `lsof -i tcp/udp`
+- Output columns explained (COMMAND, PID, FD, TYPE, NAME)
+- File descriptor letters
+
+---
+
 ## Quick Reference
 
 | Need to... | Check this file |
@@ -306,6 +321,7 @@ Record and replay terminal sessions with `script` and `scriptreplay`.
 | Use tmux basics | [`tmux/tmux-basics.md`](./tmux/tmux-basics.md) |
 | Archive or compress files | [`compression/archiving-compression.md`](./compression/archiving-compression.md) |
 | Record terminal sessions | [`utilities/script-command.md`](./utilities/script-command.md) |
+| List open files and ports | [`utilities/lsof.md`](./utilities/lsof.md) |
 
 ---
 
