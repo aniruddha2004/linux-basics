@@ -21,6 +21,8 @@
 | Cron Syntax | [`cron/cron-syntax.md`](./cron/cron-syntax.md) |
 | Cron Locations | [`cron/cron-locations.md`](./cron/cron-locations.md) |
 | Cron Practical Walkthrough | [`cron/cron-practical.md`](./cron/cron-practical.md) |
+| Tmux Basics | [`tmux/tmux-basics.md`](./tmux/tmux-basics.md) |
+| Archiving & Compression | [`compression/archiving-compression.md`](./compression/archiving-compression.md) |
 
 ---
 
@@ -46,6 +48,10 @@ Linux/
 │   ├── cron-syntax.md
 │   ├── cron-locations.md
 │   └── cron-practical.md
+├── tmux/                       # Terminal multiplexer
+│   └── tmux-basics.md
+├── compression/                # Archiving and compression
+│   └── archiving-compression.md
 └── README.md
 ```
 
@@ -237,6 +243,33 @@ Step-by-step guide to creating, testing, and scheduling cron jobs.
 
 ---
 
+### [tmux/tmux-basics.md](./tmux/tmux-basics.md)
+
+Simple notes for getting started with tmux.
+
+**Covers:**
+- What tmux is
+- Sessions: create, detach, list, reattach
+- Difference between `tmux` and `tmux new -s <name>`
+- Windows: create, rename, next/previous, list
+- Panes: vertical split, horizontal split, navigation
+- Prefix key (`Ctrl-b`)
+
+---
+
+### [compression/archiving-compression.md](./compression/archiving-compression.md)
+
+Quick notes on bundling files and reducing size.
+
+**Covers:**
+- Difference between archiving and compression
+- `tar -zcvf` and `tar -zxvf` examples
+- Using `tar` with `gzip`/`gunzip` separately
+- Common archive extensions
+- Brief note on tar bombs
+
+---
+
 ## Quick Reference
 
 | Need to... | Check this file |
@@ -254,6 +287,8 @@ Step-by-step guide to creating, testing, and scheduling cron jobs.
 | Write or understand cron expressions | [`cron/cron-syntax.md`](./cron/cron-syntax.md) |
 | Find where cron jobs are stored | [`cron/cron-locations.md`](./cron/cron-locations.md) |
 | Create and test cron jobs hands-on | [`cron/cron-practical.md`](./cron/cron-practical.md) |
+| Use tmux basics | [`tmux/tmux-basics.md`](./tmux/tmux-basics.md) |
+| Archive or compress files | [`compression/archiving-compression.md`](./compression/archiving-compression.md) |
 
 ---
 
